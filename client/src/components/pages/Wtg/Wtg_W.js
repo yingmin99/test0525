@@ -1,33 +1,28 @@
-import React from "react";
+/*global kakao*/ 
+import React, { useEffect } from 'react';
 import '../../App.css';
 
 
 export default function Wtg() {
-    return <h1 className=''>
-        <html>
-    <head>
-        <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ny3lftojg8&amp;submodules=geocoder"></script>
-        <script
-          src="https://code.jquery.com/jquery-3.6.0.min.js"
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-          crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div>
-        지도
+    
+    useEffect(()=>{
+        var container = document.getElementById('map');
+        var options = {
+          center: new kakao.maps.LatLng(37.365264512305174, 127.10676860117488),
+          level: 3
+        };
+        var map = new kakao.maps.Map(container, options);
+        var markerPosition  = new kakao.maps.LatLng(37.365264512305174, 127.10676860117488); 
+        var marker = new kakao.maps.Marker({
+          position: markerPosition
+      });
+      marker.setMap(map);
+        }, [])
+
+    return  (
+        <div align="center">
+            주변 공공 와이파이
+        	<div id="map" style={{width:"500px", height:"400px"}}></div> 
         </div>
-        <div id="map">
-        
-        </div>
-    </body>
-   
-
-
-
-</html>
-
-
-
-        
-    </h1>;
+    );
 }
